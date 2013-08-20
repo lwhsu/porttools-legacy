@@ -20,7 +20,7 @@ FreeBSD Port Tools __VERSION__
 Usage: port diff [-h] [-d <diff mode>]
 	-h	- Display this usage summary
 	-d <diff mode> - Select diff generation mode:
-		CVS - against CVS
+		SVN - against SVN
 		<dir> - against Ports tree in <dir>
 		<pattern> - against original port in <pwd><pattern>
 EOF
