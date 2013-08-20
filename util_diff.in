@@ -41,7 +41,8 @@ else
 	# Determine the default diff mode
 	if [ "${DIFF_MODE}" = "" ]
 	then
-		if [ -d /usr/ports/.svn ]
+		svn info > /dev/null 2>&1
+		if [ $? -eq 0 ]
 		then
 			DIFF_MODE="SVN"
 		else
@@ -52,9 +53,10 @@ else
 	then
 		# If there is no .svn directory then
 		# fallback to diffing against /usr/ports tree
-		if [ ! -d /usr/ports/.svn ]
+		svn info > /dev/null 2>&1
+		if [ ! $? -eq 0 ]
 		then
-			echo "Diff mode was set to ${DIFF_MODE}, but there's no .svn directory"
+			echo "Diff mode was set to ${DIFF_MODE}, but `pwd` is not a svn working copy."
 			echo -n "Trying /usr/ports ... "
 			if [ -d /usr/ports ]
 			then
